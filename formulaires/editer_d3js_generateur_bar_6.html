@@ -1,0 +1,58 @@
+<div class="formulaire_spip formulaire_inscription formulaire_#FORM formulaire_#FORM-#ENV{objet}-#ENV{id,nouveau}  formulaire_#FORM_#ENV{_etape}">
+<h3 class='titrem'><img src="#CHEMIN_IMAGE{d3js_generateur-24.png}" class="cadre-icone" /><:d3js_generateur:item_utiliser_d3js_generateur_bar:> - #ENV{_etape} / #ENV{_etapes}</h3>
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+	[(#ENV{editable})
+	<p><:d3js_generateur:texte_d3js_generateur_bar_etape6:></p>
+	<form method='post' action='#ENV{action}'><div>
+		[(#REM) declarer les hidden qui declencheront le service du formulaire
+		parametre : url d'action ]
+		#ACTION_FORMULAIRE{#ENV{action}}
+	]
+		<ul>
+			[(#ENV{editable})
+			<span class="input">
+				#SET{name,form_titre_yaxis}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+					<label for="#GET{name}"><:d3js_generateur:form_titre_yaxis:></label>[
+					<span class='erreur_message'>(#GET{erreurs})</span>
+					]<div class="choix">
+						<div><input type="text" name="#GET{name}" id="#GET{name}" value="#ENV{#GET{name}}" /></div>
+						<label for="#GET{name}"><:d3js_generateur:item_utiliser_titre_yaxis:></label>
+					</div>
+				</li>
+				#SET{name,form_rotation_yaxis}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+					<label for="#GET{name}"><:d3js_generateur:form_rotation_yaxis:></label>[
+					<span class='erreur_message'>(#GET{erreurs})</span>
+					]<div class="choix">
+						<div><input type="range" name="#GET{name}" id="#GET{name}" value="#ENV{#GET{name},-90}" max="0" min="-360" step="3" /><span class="range_valeur">#ENV{#GET{name}}</span></div>
+						<label for="#GET{name}"><:d3js_generateur:item_utiliser_rotation_yaxis:></label>
+					</div>
+				</li>
+			</span>]
+		</ul>
+
+	[(#ENV{editable})
+	[(#REM) ajouter les saisies supplementaires : extra et autre, a cet endroit ]
+	<!--extra-->
+	<p class='boutons'><span class='image_loading'>&nbsp;</span>
+		<input type="submit" class="submit" name="_retour_etape_7" value="<:suivant:>" /></p>
+	</div></form>
+	]
+</div>
+
+<script type="text/javascript">
+	$(function(){
+		$("#form_rotation_yaxis").after('<span class="range_valeur_courante"></span>');
+		$("#form_rotation_yaxis").live('change', function(){
+			$('span.range_valeur').remove();
+			var valof = $(this).val();
+			$('span.range_valeur_courante').text(valof);
+		});
+	});
+</script>
+
+<div class="centrer">
+[(#ENV{form_id_d3js_generateur}|oui)
+<INCLURE{fond=prive/squelettes/inclure/bar.js,env,ajax} />]</div>

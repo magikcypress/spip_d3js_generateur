@@ -1,0 +1,29 @@
+<h1><:d3js_generateur:titre_page_liste_d3js:></h1>
+<B_d3js_generateur>
+
+<div class="liste-objets">
+<table class='spip liste'>
+[<caption><strong class="caption">(#ENV*{titre,#GRAND_TOTAL|singulier_ou_pluriel{d3js_generateur:info_1_d3js,d3js_generateur:info_nb_d3js}})</strong></caption>]
+    <thead>
+        <tr class='first_row'>
+            <th class='statut' scope='col'></th>
+            <th class='titre' scope='col'><:d3js_generateur:liste_titre:></th>
+            <th class='types' scope='col'><:d3js_generateur:liste_type:></th>
+            <th class='date_modif' scope='col'><:d3js_generateur:liste_date_modif:></th>
+        </tr>
+    </thead>
+    <tbody>
+    <BOUCLE_d3js_generateur(D3JS_GENERATEUR){tout}>
+        <tr class="[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]">
+            <td class='statut'>[(#ID_D3JS_GENERATEUR)]</td>
+            <td class='principale'><a href="[(#URL_ECRIRE|parametre_url{exec,d3js_generateur_edit}|parametre_url{id_d3js_generateur,#ID_D3JS_GENERATEUR}|parametre_url{type,#TYPE})]">[(#TITRE)]</a></td>
+            <td class='type secondaire'>[(#TYPE)]</td>
+            <td class='date_modif secondaire'>[(#DATE_MODIF|affdate)]</td>
+        </tr>
+    </BOUCLE_d3js_generateur>
+    </tbody>
+</table>
+</div>
+</B_d3js_generateur>[
+<div class="liste-objets sites caption-wrap"><strong class="caption">(#ENV*{sinon,''})</strong></div>
+]<//B_d3js_generateur>

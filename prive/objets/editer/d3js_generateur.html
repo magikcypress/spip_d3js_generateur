@@ -1,0 +1,13 @@
+<div class="ajax">
+	[(#ENV{type}|=={pie}|oui)
+		#FORMULAIRE_D3JS_GENERATEUR{#ENV{id_d3js_generateur},env, ajax}
+	]
+
+	[(#ENV{type}|=={bar}|oui)
+		#FORMULAIRE_D3JS_GENERATEUR_BAR{#ENV{id_d3js_generateur},env, ajax}
+	]
+
+	[(#ENV{type}|=={line}|oui)
+		#FORMULAIRE_D3JS_GENERATEUR_LINE{#ENV{id_d3js_generateur},env, ajax}
+	]
+</div>
