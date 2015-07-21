@@ -11,6 +11,7 @@ Créer de bien joli graph avec d3js
 * Ajouter la couleur hexadecimal dans le champs couleur des formulaires. (bug a régler sur palette)
 * Ajout d'un document json pour gérer les datas
 * Fil d'ariane du privé redirige vers la liste des graphs
+* Passage des formulaires sous saisies
 
 #### TODO ####
 
