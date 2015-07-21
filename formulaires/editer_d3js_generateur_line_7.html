@@ -9,56 +9,46 @@
 		parametre : url d'action ]
 		#ACTION_FORMULAIRE{#ENV{action}}
 	]
-		<ul>
-			[(#ENV{editable})
-			<span class="input">
-				#SET{name,form_bulle_background}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-					<label for="#GET{name}"><:d3js_generateur:form_bulle_background:></label>[
-					<span class='erreur_message'>(#GET{erreurs})</span>
-					]<div class="choix">
-						<div><input type="text" class="palette" name="#GET{name}" value="#ENV{#GET{name},#333333}" /></div>
-						<label for="#GET{name}"><:d3js_generateur:item_utiliser_bulle_background:></label>
-					</div>
-				</li>
-				#SET{name,form_bulle_border}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-					<label for="#GET{name}"><:d3js_generateur:form_bulle_border:></label>[
-					<span class='erreur_message'>(#GET{erreurs})</span>
-					]<div class="choix">
-						<div><input type="text" name="#GET{name}" value="#ENV{#GET{name},1}" /></div>
-						<label for="#GET{name}"><:d3js_generateur:item_utiliser_bulle_border:></label>
-					</div>
-				</li>
-				#SET{name,form_bulle_color}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-					<label for="#GET{name}"><:d3js_generateur:form_bulle_color:></label>[
-					<span class='erreur_message'>(#GET{erreurs})</span>
-					]<div class="choix">
-						<div><input type="text" class="palette" name="#GET{name}" value="#ENV{#GET{name},#333333}" /></div>
-						<label for="#GET{name}"><:d3js_generateur:item_utiliser_bulle_color:></label>
-					</div>
-				</li>
-				#SET{name,form_bulle_corner_border}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-					<label for="#GET{name}"><:d3js_generateur:form_bulle_corner_border:></label>[
-					<span class='erreur_message'>(#GET{erreurs})</span>
-					]<div class="choix">
-						<div><input type="text" name="#GET{name}" value="#ENV{#GET{name},2}" /></div>
-						<label for="#GET{name}"><:d3js_generateur:item_utiliser_bulle_corner_border:></label>
-					</div>
-				</li>
-				#SET{name,form_bulle_z_index}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-					<label for="#GET{name}"><:d3js_generateur:form_bulle_z_index:></label>[
-					<span class='erreur_message'>(#GET{erreurs})</span>
-					]<div class="choix">
-						<div><input type="text" name="#GET{name}" value="#ENV{#GET{name},50}" /></div>
-						<label for="#GET{name}"><:d3js_generateur:item_utiliser_bulle_z_index:></label>
-					</div>
-				</li>
-			</span>]
-		</ul>
+
+	<ul>
+		[(#ENV{editable})
+		<li class="fieldset">
+		<fieldset><ul>
+			#SET{name,form_bulle_background}
+			[(#SAISIE{input,#GET{name},
+				label=<:d3js_generateur:form_bulle_background:>,
+				defaut=#ENV{#GET{name},#333333},
+				class=palette,
+				explication=<:d3js_generateur:item_utiliser_bulle_background:>})]
+
+			#SET{name,form_bulle_border}
+			[(#SAISIE{input,#GET{name},
+				label=<:d3js_generateur:form_bulle_border:>,
+				defaut=#ENV{#GET{name},1},
+				explication=<:d3js_generateur:item_utiliser_bulle_border:>})]
+
+			#SET{name,form_bulle_color}
+			[(#SAISIE{input,#GET{name},
+				label=<:d3js_generateur:form_bulle_color:>,
+				defaut=#ENV{#GET{name},#333333},
+				class=palette,
+				explication=<:d3js_generateur:item_utiliser_bulle_color:>})]
+
+			#SET{name,form_bulle_corner_border}
+			[(#SAISIE{input,#GET{name},
+				label=<:d3js_generateur:form_bulle_corner_border:>,
+				defaut=#ENV{#GET{name},2},
+				explication=<:d3js_generateur:item_utiliser_bulle_corner_border:>})]
+
+			#SET{name,form_bulle_z_index}
+			[(#SAISIE{input,#GET{name},
+				label=<:d3js_generateur:form_bulle_z_index:>,
+				defaut=#ENV{#GET{name},50},
+				explication=<:d3js_generateur:item_utiliser_bulle_z_index:>})]
+
+		</ul></fieldset>
+		</li>]
+	</ul>
 
 	[(#ENV{editable})
 	[(#REM) ajouter les saisies supplementaires : extra et autre, a cet endroit ]

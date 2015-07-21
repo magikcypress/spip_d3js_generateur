@@ -9,65 +9,50 @@
 		parametre : url d'action ]
 		#ACTION_FORMULAIRE{#ENV{action}}
 	]
-		<ul>
-			[(#ENV{editable})
-			<span class="input">
-				#SET{name,form_size_canvasWidth}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-					<label for="#GET{name}"><:d3js_generateur:form_size_canvasWidth:></label>[
-					<span class='erreur_message'>(#GET{erreurs})</span>
-					]<div class="choix">
-						<div><input type="text" name="#GET{name}" value="#ENV{#GET{name},660}" /></div>
-						<label for="#GET{name}"><:d3js_generateur:item_utiliser_size_canvasWidth:></label>
-					</div>
-				</li>
-				#SET{name,form_size_canvasHeight}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-					<label for="#GET{name}"><:d3js_generateur:form_size_canvasHeight:></label>[
-					<span class='erreur_message'>(#GET{erreurs})</span>
-					]<div class="choix">
-						<div><input type="text" name="#GET{name}" value="#ENV{#GET{name},600}" /></div>
-						<label for="#GET{name}"><:d3js_generateur:item_utiliser_size_canvasHeight:></label>
-					</div>
-				</li>
-				#SET{name,form_size_canvasTop}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-					<label for="#GET{name}"><:d3js_generateur:form_size_canvasTop:></label>[
-					<span class='erreur_message'>(#GET{erreurs})</span>
-					]<div class="choix">
-						<div><input type="text" name="#GET{name}" value="#ENV{#GET{name},60}" /></div>
-						<label for="#GET{name}"><:d3js_generateur:item_utiliser_size_canvasTop:></label>
-					</div>
-				</li>
-				#SET{name,form_size_canvasBottom}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-					<label for="#GET{name}"><:d3js_generateur:form_size_canvasBottom:></label>[
-					<span class='erreur_message'>(#GET{erreurs})</span>
-					]<div class="choix">
-						<div><input type="text" name="#GET{name}" value="#ENV{#GET{name},30}" /></div>
-						<label for="#GET{name}"><:d3js_generateur:item_utiliser_size_canvasBottom:></label>
-					</div>
-				</li>
-				#SET{name,form_size_canvasLeft}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-					<label for="#GET{name}"><:d3js_generateur:form_size_canvasLeft:></label>[
-					<span class='erreur_message'>(#GET{erreurs})</span>
-					]<div class="choix">
-						<div><input type="text" name="#GET{name}" value="#ENV{#GET{name},60}" /></div>
-						<label for="#GET{name}"><:d3js_generateur:item_utiliser_size_canvasLeft:></label>
-					</div>
-				</li>
-				#SET{name,form_size_canvasRight}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-					<label for="#GET{name}"><:d3js_generateur:form_size_canvasRight:></label>[
-					<span class='erreur_message'>(#GET{erreurs})</span>
-					]<div class="choix">
-						<div><input type="text" name="#GET{name}" value="#ENV{#GET{name},60}" /></div>
-						<label for="#GET{name}"><:d3js_generateur:item_utiliser_size_canvasRight:></label>
-					</div>
-				</li>
-			</span>]
-		</ul>
+
+	<ul>
+		[(#ENV{editable})
+		<li class="fieldset">
+		<fieldset><ul>
+			#SET{name,form_size_canvasWidth}
+			[(#SAISIE{input,#GET{name},
+				label=<:d3js_generateur:form_size_canvasWidth:>,
+				defaut=#ENV{#GET{name},660},
+				explication=<:d3js_generateur:item_utiliser_size_canvasWidth:>})]
+
+			#SET{name,form_size_canvasHeight}
+			[(#SAISIE{input,#GET{name},
+				label=<:d3js_generateur:form_size_canvasHeight:>,
+				defaut=#ENV{#GET{name},600},
+				explication=<:d3js_generateur:item_utiliser_size_canvasHeight:>})]
+
+			#SET{name,form_size_canvasTop}
+			[(#SAISIE{input,#GET{name},
+				label=<:d3js_generateur:form_size_canvasTop:>,
+				defaut=#ENV{#GET{name},60},
+				explication=<:d3js_generateur:item_utiliser_size_canvasTop:>})]
+
+			#SET{name,form_size_canvasBottom}
+			[(#SAISIE{input,#GET{name},
+				label=<:d3js_generateur:form_size_canvasBottom:>,
+				defaut=#ENV{#GET{name},30},
+				explication=<:d3js_generateur:item_utiliser_size_canvasBottom:>})]
+
+			#SET{name,form_size_canvasLeft}
+			[(#SAISIE{input,#GET{name},
+				label=<:d3js_generateur:form_size_canvasLeft:>,
+				defaut=#ENV{#GET{name},60},
+				explication=<:d3js_generateur:item_utiliser_size_canvasLeft:>})]
+
+			#SET{name,form_size_canvasRight}
+			[(#SAISIE{input,#GET{name},
+				label=<:d3js_generateur:form_size_canvasRight:>,
+				defaut=#ENV{#GET{name},60},
+				explication=<:d3js_generateur:item_utiliser_size_canvasRight:>})]
+
+		</ul></fieldset>
+		</li>]
+	</ul>
 
 	[(#ENV{editable})
 	[(#REM) ajouter les saisies supplementaires : extra et autre, a cet endroit ]

@@ -9,77 +9,63 @@
 		parametre : url d'action ]
 		#ACTION_FORMULAIRE{#ENV{action}}
 	]
-		<ul>
-			[(#ENV{editable})
-			<span class="input">
-				#SET{name,form_footer_text}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-					<label for="#GET{name}"><:d3js_generateur:form_footer_text:></label>[
-					<span class='erreur_message'>(#GET{erreurs})</span>
-					]<div class="choix">
-						<div><textarea name="#GET{name}" class="texte">#ENV{#GET{name}}</textarea></div>
-						<label for="#GET{name}"><:d3js_generateur:item_utiliser_footer_text:></label>
-					</div>
-				</li>
-				#SET{name,form_footer_color}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-					<label for="#GET{name}"><:d3js_generateur:form_footer_color:></label>[
-					<span class='erreur_message'>(#GET{erreurs})</span>
-					]<div class="choix">
-						<div><input type="text" class="palette" name="#GET{name}" value="#ENV{#GET{name},#333333}" /></div>
-						<label for="#GET{name}"><:d3js_generateur:item_utiliser_footer_color:></label>
-					</div>
-				</li>
-				#SET{name,form_footer_fontSize}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-					<label for="#GET{name}"><:d3js_generateur:form_footer_fontSize:></label>[
-					<span class='erreur_message'>(#GET{erreurs})</span>
-					]<div class="choix">
-						<div><input type="text" name="#GET{name}" value="#ENV{#GET{name},12}" /></div>
-						<label for="#GET{name}"><:d3js_generateur:item_utiliser_footer_fontSize:></label>
-					</div>
-				</li>
-				#SET{name,form_footer_font}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-					<label for="#GET{name}"><:d3js_generateur:form_footer_font:></label>[
-					<span class='erreur_message'>(#GET{erreurs})</span>
-					]<div class="choix">
-						<select id="#GET{name}" name="#GET{name}">
-							<optgroup label="Standard Fonts">
-								<option value="arial" [(#ENV{#GET{name}}|=={'arial'}|oui)selected="checked"]>Arial</option>
-								<option value="courier" [(#ENV{#GET{name}}|=={'courier'}|oui)selected="checked"]>Courier</option>
-								<option value="garamond" [(#ENV{#GET{name}}|=={'Courier'}|oui)selected="checked"]>Garamond</option>
-								<option value="georgia" [(#ENV{#GET{name}}|=={'Garamond'}|oui)selected="checked"]>Georgia</option>
-								<option value="helvetica" [(#ENV{#GET{name}}|=={'Georgia'}|oui)selected="checked"]>Helvetica</option>
-								<option value="lucida sans" [(#ENV{#GET{name}}|=={'Helvetica'}|oui)selected="checked"]>Lucida Sans</option>
-								<option value="times new roman" [(#ENV{#GET{name}}|=={'Lucida Sans'}|oui)selected="checked"]>Times New Roman</option>
-								<option value="verdana" [(#ENV{#GET{name}}|=={'Times New Roman'}|oui)selected="checked"]>Verdana</option>
-							</optgroup>
-							<optgroup label="Web Fonts">
-								<option value="cinzel" [(#ENV{#GET{name}}|=={'cinzel'}|oui)selected="checked"]>Cinzel</option>
-								<option value="exo" [(#ENV{#GET{name}}|=={'Exo'}|oui)selected="checked"]>Exo</option>
-								<option value="open sans" [(#ENV{#GET{name}}|=={'open sans'}|oui)selected="checked"]>Open Sans</option>
-							</optgroup>
-						</select>
-					</div>
-				</li>
-				#SET{name,form_footer_location}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-					<label for="#GET{name}"><:d3js_generateur:form_footer_location:></label>[
-					<span class='erreur_message'>(#GET{erreurs})</span>
-					]<div class="choix">
-						<select id="#GET{name}" name="#GET{name}">
-							<optgroup label="Position du pied de page">
-								<option value="bottom-left" [(#ENV{#GET{name}}|=={'bottom-left'}|oui)selected="checked"]>bottom-left</option>
-								<option value="bottom-center" [(#ENV{#GET{name}}|=={'bottom-center'}|oui)selected="checked"]>bottom-center</option>
-								<option value="bottom-right" [(#ENV{#GET{name}}|=={'bottom-right'}|oui)selected="checked"]>bottom-right</option>
-							</optgroup>
-						</select>
-						<label for="#GET{name}"><:d3js_generateur:item_utiliser_footer_location:></label>
-					</div>
-				</li>
-			</span>]
-		</ul>
+
+	<ul>
+		[(#ENV{editable})
+		<li class="fieldset">
+		<fieldset><ul>
+			#SET{name,form_footer_text}
+			[(#SAISIE{textarea,#GET{name},
+				label=<:d3js_generateur:form_footer_text:>,
+				defaut=#ENV{#GET{name}},
+				explication=<:d3js_generateur:item_utiliser_footer_text:>})]
+
+			#SET{name,form_footer_color}
+			[(#SAISIE{input,#GET{name},
+				label=<:d3js_generateur:form_footer_color:>,
+				defaut=#ENV{#GET{name},#333333},
+				class=palette,
+				explication=<:d3js_generateur:item_utiliser_footer_color:>})]
+
+			#SET{name,form_footer_fontSize}
+			[(#SAISIE{input,#GET{name},
+				label=<:d3js_generateur:form_footer_fontSize:>,
+				defaut=#ENV{#GET{name},12},
+				explication=<:d3js_generateur:item_utiliser_footer_fontSize:>})]
+
+			#SET{name,form_footer_font}
+			[(#SAISIE{selection,#GET{name},
+				label=<:d3js_generateur:form_footer_font:>,
+				explication=<:d3js_generateur:item_utiliser_footer_title_font:>,
+				cacher_option_intro=oui,
+				datas=#ARRAY{
+						Standard Fonts,#ARRAY{
+									arial,Arial,
+									courier,Courier,
+									garamond,Garamond,
+									georgia,Georgia,
+									helvetica,Helvetica,
+									lucida sans,Lucida Sans,
+									times new roman,Times New Roman,
+									verdana,Verdana},
+						Web Fonts,#ARRAY{
+							cinzel,Cinzel,
+							exo,Exo,
+							open sans,Open Sans}}})]
+
+			#SET{name,form_footer_location}
+			[(#SAISIE{selection,#GET{name},
+				label=<:d3js_generateur:form_footer_location:>,
+				explication=<:d3js_generateur:item_utiliser_footer_location:>,
+				cacher_option_intro=oui,
+				datas=#ARRAY{
+						Position du pied de page,#ARRAY{
+									bottom-left,bottom-left,
+									bottom-center,bottom-center,
+									bottom-right,bottom-right}}})]
+		</ul></fieldset>
+		</li>]
+	</ul>
 
 	[(#ENV{editable})
 	[(#REM) ajouter les saisies supplementaires : extra et autre, a cet endroit ]

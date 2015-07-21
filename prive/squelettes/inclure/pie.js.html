@@ -37,7 +37,6 @@
 	[(#SET{misc_gradient_percentage,#MISC_GRADIENT_PERCENTAGE})]
 </BOUCLE_DONNEES>
 
-
 <BOUCLE_tous(DOCUMENTS types_documents){objet=d3js_generateur}{id_objet=#GET{id_d3js}}{tout}>
 	[(#SET{fichier,#INCLURE{#FICHIER}})]
 </BOUCLE_tous>
@@ -96,7 +95,7 @@
 				"fontSize": [(#GET{labels_value_fontSize})]
 			},
 			"lines": {
-				"enabled": [(#GET{labels_lines_enabled})]
+				"enabled": "[(#GET{labels_lines_enabled})]"
 			}
 		},
 		"effects": {
@@ -108,7 +107,7 @@
 		},
 		"misc": {
 			"gradient": {
-				"enabled": [(#GET{misc_gradient_enabled})],
+				"enabled": "[(#GET{misc_gradient_enabled})]",
 				"percentage": [(#GET{misc_gradient_percentage})]
 			}
 		},

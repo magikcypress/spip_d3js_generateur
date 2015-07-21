@@ -9,67 +9,44 @@
 		parametre : url d'action ]
 		#ACTION_FORMULAIRE{#ENV{action}}
 	]
-		<ul>
-			[(#ENV{editable})
-			<span class="input">
-				<input type="hidden" name="fichier" value="#ENV{fichier}" />
-				#SET{name,form_effects_pullOutSegmentOnClick_effect}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-					<label for="#GET{name}"><:d3js_generateur:form_effects_pulloutsegmentonclick_effect:></label>[
-					<span class='erreur_message'>(#GET{erreurs})</span>
-					]
-					<div class="choix">
-						<input type="radio" name="#GET{name}" id="#GET{name}_oui" value="true"
-						[(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:d3js_generateur:item_utiliser_effects_pulloutsegmentonclick_effect_enabled:></label>
-					</div>
-					<div class="choix">
-						<input type="radio" name="#GET{name}" id="#GET{name}_non" value="false"
-						[(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:d3js_generateur:item_utiliser_effects_pulloutsegmentonclick_effect_disabled:></label>
-					</div>
-				</li>
-				#SET{name,form_effects_pullOutSegmentOnClick_speed}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-					<label for="#GET{name}"><:d3js_generateur:form_effects_pulloutsegmentonclick_speed:></label>[
-					<span class='erreur_message'>(#GET{erreurs})</span>
-					]<div class="choix">
-						<div><input type="text" name="#GET{name}" value="#ENV{#GET{name},2000}" /></div>
-						<label for="#GET{name}"><:d3js_generateur:item_utiliser_effects_pulloutsegmentonclick_speed:></label>
-					</div>
-				</li>
-				#SET{name,form_effects_pullOutSegmentOnClick_size}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-					<label for="#GET{name}"><:d3js_generateur:form_effects_pulloutsegmentonclick_size:></label>[
-					<span class='erreur_message'>(#GET{erreurs})</span>
-					]<div class="choix">
-						<div><input type="text" name="#GET{name}" value="#ENV{#GET{name},10}" /></div>
-						<label for="#GET{name}"><:d3js_generateur:item_utiliser_effects_pulloutsegmentonclick_size:></label>
-					</div>
-				</li>
-				#SET{name,form_misc_gradient_enabled}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-					<label for="#GET{name}"><:d3js_generateur:form_misc_gradient_enabled:></label>[
-					<span class='erreur_message'>(#GET{erreurs})</span>
-					]
-					<div class="choix">
-						<input type="radio" name="#GET{name}" id="#GET{name}_oui" value="true"
-						[(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:d3js_generateur:item_utiliser_misc_gradient_enabled:></label>
-					</div>
-					<div class="choix">
-						<input type="radio" name="#GET{name}" id="#GET{name}_non" value="false"
-						[(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:d3js_generateur:item_utiliser_misc_gradient_disabled:></label>
-					</div>
-				</li>
-				#SET{name,form_misc_gradient_percentage}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-					<label for="#GET{name}"><:d3js_generateur:form_misc_gradient_percentage:></label>[
-					<span class='erreur_message'>(#GET{erreurs})</span>
-					]<div class="choix">
-						<div><input type="text" name="#GET{name}" value="#ENV{#GET{name},100}" /></div>
-						<label for="#GET{name}"><:d3js_generateur:item_utiliser_misc_gradient_percentage:></label>
-					</div>
-				</li>
-			</span>]
-		</ul>
+
+	<ul>
+		[(#ENV{editable})
+		<li class="fieldset">
+		<fieldset><ul>
+			#SET{name,fichier}
+			[(#SAISIE{hidden,#GET{name},
+				defaut=#ENV{fichier}})]
+
+			#SET{name,form_effects_pullOutSegmentOnClick_effect}
+			[(#SAISIE{oui_non, #GET{name},
+				label=<:d3js_generateur:form_effects_pulloutsegmentonclick_effect:>})]
+
+			#SET{name,form_effects_pullOutSegmentOnClick_speed}
+			[(#SAISIE{input,#GET{name},
+				label=<:d3js_generateur:form_effects_pulloutsegmentonclick_speed:>,
+				defaut=#ENV{#GET{name},2000},
+				explication=<:d3js_generateur:item_utiliser_effects_pulloutsegmentonclick_speed:>})]
+
+			#SET{name,form_effects_pullOutSegmentOnClick_size}
+			[(#SAISIE{input,#GET{name},
+				label=<:d3js_generateur:form_effects_pulloutsegmentonclick_size:>,
+				defaut=#ENV{#GET{name},10},
+				explication=<:d3js_generateur:item_utiliser_effects_pulloutsegmentonclick_size:>})]
+
+			#SET{name,form_misc_gradient_enabled}
+			[(#SAISIE{oui_non, #GET{name},
+				label=<:d3js_generateur:form_misc_gradient_enabled:>})]			
+
+			#SET{name,form_misc_gradient_percentage}
+			[(#SAISIE{input, #GET{name},
+				label=<:d3js_generateur:form_misc_gradient_percentage:>,
+				defaut=#ENV{#GET{name},100},
+				explication=<:d3js_generateur:item_utiliser_misc_gradient_percentage:>})]
+
+		</ul></fieldset>
+		</li>]
+	</ul>
 
 	[(#ENV{editable})
 	[(#REM) ajouter les saisies supplementaires : extra et autre, a cet endroit ]

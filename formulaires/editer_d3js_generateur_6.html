@@ -9,30 +9,32 @@
 		parametre : url d'action ]
 		#ACTION_FORMULAIRE{#ENV{action}}
 	]
-		<ul>
-			[(#ENV{editable})
-			<span class="input">
-				<input type="hidden" name="fichier" value="#ENV{fichier}" />
-				#SET{name,form_labels_outer_pieDistance}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-					<label for="#GET{name}"><:d3js_generateur:form_labels_outer_pieDistance:></label>[
-					<span class='erreur_message'>(#GET{erreurs})</span>
-					]<div class="choix">
-						<div><input type="text" name="#GET{name}" value="#ENV{#GET{name},32}" placeholder="32" /></div>
-						<label for="#GET{name}"><:d3js_generateur:item_utiliser_labels_outer_pieDistance:></label>
-					</div>
-				</li>
-				#SET{name,form_labels_inner_hideWhenLessThanPercentage}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-					<label for="#GET{name}"><:d3js_generateur:form_labels_inner_hideWhenLessThanPercentage:></label>[
-					<span class='erreur_message'>(#GET{erreurs})</span>
-					]<div class="choix">
-						<div><input type="range" name="#GET{name}" id="#GET{name}" value="#ENV{#GET{name},3}" max="350" min="0" step="3" /><span class="range_valeur">#ENV{#GET{name}} %</span></div>
-						<label for="#GET{name}"><:d3js_generateur:item_utiliser_labels_inner_hideWhenLessThanPercentage:></label>
-					</div>
-				</li>
-			</span>]
-		</ul>
+
+	<ul>
+		[(#ENV{editable})
+		<li class="fieldset">
+		<fieldset><ul>
+
+			#SET{name,fichier}
+			[(#SAISIE{hidden,#GET{name},
+				defaut=#ENV{fichier}})]
+
+			#SET{name,form_labels_outer_pieDistance}
+			[(#SAISIE{input,#GET{name},
+				label=<:d3js_generateur:form_labels_outer_pieDistance:>,
+				defaut=#ENV{#GET{name},32},
+				explication=<:d3js_generateur:item_utiliser_labels_outer_pieDistance:>})]
+
+			#SET{name,form_labels_inner_hideWhenLessThanPercentage}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+			<li class="editer editer_[(#GET{name})] saisie_input [ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+				<label for="#GET{name}"><:d3js_generateur:form_labels_inner_hideWhenLessThanPercentage:></label>
+				<p id="#GET{name}" class="explication"><:d3js_generateur:item_utiliser_labels_inner_hideWhenLessThanPercentage:></p>
+
+				<input type="range" name="#GET{name}" id="#GET{name}" value="#ENV{#GET{name},3}" aria-describedby="#GET{name}" max="350" min="0" step="3" /><span class="range_valeur">#ENV{#GET{name}} %</span>
+			</li>
+		</ul></fieldset>
+		</li>]
+	</ul>
 
 	[(#ENV{editable})
 	[(#REM) ajouter les saisies supplementaires : extra et autre, a cet endroit ]
