@@ -285,8 +285,6 @@ function formulaires_editer_d3js_generateur_bar_traiter_dist($id_d3js_generateur
 	$set['date_modif'] = date('Y-m-d H:i:s');
 	$set['type'] = "bar";
 
-	spip_log($set, 'test.' . _LOG_ERREUR);
-
 	if($id_d3js_generateur) {
 		$update = sql_updateq('spip_d3js_generateur', $set, 'id_d3js_generateur=' . intval($id_d3js_generateur));
 		spip_log($update, 'test.' . _LOG_ERREUR);

@@ -1,13 +1,37 @@
 <div class="ajax">	
 	<BOUCLE_si_pie(CONDITION){si #ENV{type}|=={pie}}>
 		#FORMULAIRE_EDITER_D3JS_GENERATEUR{#ENV{id_d3js_generateur},pie,ajax}
+		[(#AUTORISER{supprimer,d3js_generateur,#ENV{id_d3js_generateur}}|oui)
+			[(#URL_ACTION_AUTEUR{
+				supprimer_d3js_generateur,
+				#ENV{id_d3js_generateur},
+				#URL_ECRIRE{d3js_generateur}
+				}|icone_verticale{<:d3js_generateur:bouton_supprimer:>,d3js_generateur-24,del,right}
+			)]
+		]
 	</BOUCLE_si_pie>
 
 	<BOUCLE_si_bar(CONDITION){si #ENV{type}|=={bar}}>
 		#FORMULAIRE_EDITER_D3JS_GENERATEUR_BAR{#ENV{id_d3js_generateur},bar,ajax}
+		[(#AUTORISER{supprimer,d3js_generateur,#ENV{id_d3js_generateur}}|oui)
+			[(#URL_ACTION_AUTEUR{
+				supprimer_d3js_generateur,
+				#ENV{id_d3js_generateur},
+				#URL_ECRIRE{d3js_generateur}
+				}|icone_verticale{<:d3js_generateur:bouton_supprimer:>,d3js_generateur-24,del,right}
+			)]
+		]
 	</BOUCLE_si_bar>
 
 	<BOUCLE_si_line(CONDITION){si #ENV{type}|=={line}}>
 		#FORMULAIRE_EDITER_D3JS_GENERATEUR_LINE{#ENV{id_d3js_generateur},line,ajax}
+		[(#AUTORISER{supprimer,d3js_generateur,#ENV{id_d3js_generateur}}|oui)
+			[(#URL_ACTION_AUTEUR{
+				supprimer_d3js_generateur,
+				#ENV{id_d3js_generateur},
+				#URL_ECRIRE{d3js_generateur}
+				}|icone_verticale{<:d3js_generateur:bouton_supprimer:>,d3js_generateur-24,del,right}
+			)]
+		]
 	</BOUCLE_si_line>
 </div>
