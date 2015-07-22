@@ -14,6 +14,10 @@
 		[(#ENV{editable})
 		<li class="fieldset">
 		<fieldset><ul>
+			#SET{name,fichier}
+			[(#SAISIE{hidden,#GET{name},
+				defaut=#ENV{fichier}})]
+
 			#SET{name,form_titre_yaxis}
 			[(#SAISIE{input,#GET{name},
 				label=<:d3js_generateur:form_titre_yaxis:>,
