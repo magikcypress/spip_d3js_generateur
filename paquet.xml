@@ -22,8 +22,9 @@
 	<pipeline nom="declarer_tables_interfaces" inclure="base/d3js_generateur.php" />
 	<pipeline nom="declarer_tables_objets_sql" inclure="base/d3js_generateur.php" />
 	<pipeline nom="autoriser" inclure="d3js_generateur_autorisations.php" />
-	<pipeline nom="header_prive_css" action="header_prive_css" inclure="d3js_generateur_pipelines.php" />
-	<pipeline nom="insert_head_css" action="insert_head_css" inclure="d3js_generateur_pipelines.php" />
+	<pipeline nom="header_prive_css" inclure="d3js_generateur_pipelines.php" />
+	<pipeline nom="insert_head_css" inclure="d3js_generateur_pipelines.php" />
+	<pipeline nom="d3js_plugins" inclure="d3js_generateur_pipelines.php" />
 
 	<menu nom="d3js_generateur" titre="d3js_generateur:icone_editer_d3js" parent="menu_edition" icone="images/d3js_generateur-16.png" action="d3js_generateur" />
 </paquet>

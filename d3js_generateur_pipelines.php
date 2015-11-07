@@ -38,4 +38,18 @@ function d3js_generateur_insert_head_css($flux) {
 	return $flux;
 }
 
+/**
+ * Insertion des plugins d3js supplémentaires dans le head
+ *
+ * @param $flux
+ * @return mixed
+ */
+function d3js_generateur_d3js_plugins($plugins){
+	if(test_espace_prive()){
+		$plugins[] = 'd3pie';
+
+	}
+	return $plugins;
+}
+
 ?>

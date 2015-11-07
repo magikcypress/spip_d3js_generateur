@@ -1,3 +1,4 @@
+#BOITE_OUVRIR
 <INCLURE{fond=prive/objets/liste/liste,ajax} />
 
 [(#AUTORISER{creer,d3js_generateur})
@@ -11,3 +12,4 @@
 [(#AUTORISER{creer,d3jsline_generateur})
 	[(#URL_ECRIRE{d3js_generateur_edit,new=oui}|parametre_url{type,"line"}|icone_verticale{<:d3js_generateur:icone_ecrire_d3js_line:>,d3js_generateur,new,right})]
 ]
+#BOITE_FERMER

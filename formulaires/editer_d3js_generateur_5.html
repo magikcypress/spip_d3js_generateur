@@ -10,7 +10,7 @@
 		#ACTION_FORMULAIRE{#ENV{action}}
 	]
 		
-	<ul>
+<!-- 	<ul>
 		[(#ENV{editable})
 		<span class="input">
 			<input type="hidden" name="joindre_upload" value="on" />
@@ -25,13 +25,22 @@
 				</div>
 			</li>
 		</span>]
-	</ul>
+	</ul> -->
+
+	#SET{domid,_#ENV{mode}|concat{'_',#ENV{id,new}}}
+	#SET{methode,upload}
+	[(#ENV{joindre_mediatheque}|oui)#SET{methode,mediatheque}]
+	[(#ENV{joindre_distant}|oui)#SET{methode,distant}]
+	[(#ENV{joindre_ftp}|oui)#SET{methode,ftp}]
+
+	[(#INCLURE{fond=formulaires/inc-upload_document, env, mediatheque=#ENV{objet,''}|et{#ENV{id_objet,''}}|et{#ENV{proposer_media}}})]
+
 
 	[(#ENV{editable})
 	[(#REM) ajouter les saisies supplementaires : extra et autre, a cet endroit ]
 	<!--extra-->
-	<p class='boutons'><span class='image_loading'>&nbsp;</span>
-		<input type="submit" class="submit" name="_retour_etape_6" value="<:suivant:>" /></p>
+	<!--p class='boutons'><span class='image_loading'>&nbsp;</span>
+		<input type="submit" class="submit" name="_retour_etape_6" value="<:suivant:>" /></p-->
 	</div></form>
 	]
 </div>

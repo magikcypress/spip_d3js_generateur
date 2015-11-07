@@ -25,6 +25,8 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 function formulaires_editer_d3js_generateur_charger_dist($id_d3js_generateur='new', $objet='', $id_objet='', $retour='', $ajaxload='oui', $options=''){
 
 	$valeurs = array();
+	spip_log($id_d3js_generateur, 'test.' . _LOG_ERREUR);
+
 	$d3js_generateur = sql_fetsel('*', 'spip_d3js_generateur', 'id_d3js_generateur=' . intval($id_d3js_generateur));
 	$id_document = sql_getfetsel('id_document', 'spip_documents_liens', 'id_objet=' . intval($id_d3js_generateur), '', 'id_document DESC', '1');
 
@@ -73,6 +75,9 @@ function formulaires_editer_d3js_generateur_charger_dist($id_d3js_generateur='ne
 			$valeurs["$valeur"] = _request($valeur);
 		}
 	}
+
+	spip_log($valeurs, 'test.' . _LOG_ERREUR);
+
 	$valeurs['_etapes'] = 8;
 
 	return $valeurs;
